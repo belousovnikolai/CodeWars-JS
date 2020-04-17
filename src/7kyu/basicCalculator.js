@@ -1,5 +1,5 @@
 function calculate(num1, operation, num2) {
-    if (num2 === 0 && operation == "/") {
+    if (num2 === 0 && operation === "/") {
         return null;
     }
 
