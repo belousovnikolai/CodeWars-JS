@@ -1,11 +1,13 @@
 function digitalRoot(n) {
-    if (n < 10) {
-        return n;
-    }
+    let number = n;
     let sum = 0;
-    while (n > 0) {
-        sum += n % 10;
-        n = parseInt(n / 10, 10);
+
+    if (number < 10) {
+        return number;
+    }
+    while (number > 0) {
+        sum += number % 10;
+        number = parseInt(number / 10, 10);
     }
     return digitalRoot(sum);
 }
