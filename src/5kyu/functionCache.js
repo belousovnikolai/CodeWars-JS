@@ -1,11 +1,12 @@
 function cache(func) {
-    const cache = {};
-    
-    return function() {
-        const key = JSON.stringify(arguments);
-        
-        if (key in cache) return cache[key];
-        else return (cache[key] = func(...arguments));
+    const c = {};
+
+    return function memo(...args) {
+        const key = JSON.stringify(args);
+
+        if (key in c) return c[key];
+        c[key] = func(...args);
+        return c[key];
     };
 }
 
