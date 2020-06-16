@@ -1,92 +1,48 @@
-function buildRegion() {
-  const region = {};
-  let index = 0;
+const region = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;-?! '()$%&\"";
 
-  for (let i = 65; i <= 90; i++) {
-    region[String.fromCharCode(i)] = index++;
-  }
-  for (let i = 97; i <= 122; i++) {
-    region[String.fromCharCode(i)] = index++;
-  }
-  for (let i = 48; i <= 57; i++) {
-    region[String.fromCharCode(i)] = index++;
-  }
-  region[String.fromCharCode(46)] = index++;
-  region[String.fromCharCode(44)] = index++;
-  region[String.fromCharCode(58)] = index++;
-  region[String.fromCharCode(59)] = index++;
-  region[String.fromCharCode(45)] = index++;
-  region[String.fromCharCode(63)] = index++;
-  region[String.fromCharCode(33)] = index++;
-  region[String.fromCharCode(32)] = index++;
-  region[String.fromCharCode(39)] = index++;
-  region[String.fromCharCode(40)] = index++;
-  region[String.fromCharCode(41)] = index++;
-  region[String.fromCharCode(36)] = index++;
-  region[String.fromCharCode(37)] = index++;
-  region[String.fromCharCode(38)] = index++;
-  region[String.fromCharCode(34)] = index++;
-
-  return region;
+const validate = (char) => {
+  if (!region.includes(char)) throw new Error(`Char: "${char}" not found.`);
+  return char;
 };
 
-function verifyText(text, region) {
-  // If the input-string is null or empty return exactly this value!
-  if (!text || text == null) {
-    return text;
-  }
+const getCharCode = (c) => region.indexOf(c);
 
-  // If the input-string has chars, that are not in the region, throw an Error(JavaScript).
-  for (let i = 0; i < text.length; i++) {
-    if (!region.hasOwnProperty(text.charAt(i))) { throw new Error(`Char "${text.charAt(i)}" not found.`); }
+const switchCase = (char) => (char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase());
+
+const revertStringCases = (char, index) => (index % 2 !== 0 ? switchCase(char) : char);
+
+const toEncrypted = (index) => (index < 0 ? region[index + region.length] : region[index]);
+
+const getDiff = (char, index, chars) => {
+  if (index === 0) {
+    return region.length - getCharCode(char) - 1;
   }
+  return getCharCode(chars[index - 1]) - getCharCode(char);
 };
 
 function encrypt(text) {
-  const region = buildRegion()
-  // console.log(region);
-  verifyText(text, region);
-
-  // Step 1
-  let encrypted = "";
-
-  for (let i = 0; i < text.length; i++) {
-    if (i % 2 != 0) {
-      encrypted += text.charAt(i).toUpperCase();
-    } else {
-      encrypted += text.charAt(i);
-    }
-  }
-
-  // Step 2
-  let str = encrypted.charAt(0);
-
-  for (let j = 1; j < text.length; j++) {
-    let diff = region[encrypted.charAt(j - 1)] - region[encrypted.charAt(j)];
-    if (diff < 0) {
-      diff += 77;
-    }
-    Object.keys(region).forEach((key) => {
-      if (region[key] == diff) str += key;
-    });
-  }
-
-  // Step 3
-  let encrypted2 = "";
-  Object.keys(region).forEach((key) => {
-    if (region[key] == -(region[str.charAt(0)] - 76)) encrypted2 += key;
-  });
-  
-  return encrypted2.concat(str.slice(1));
+  if (!text || text.length === 0) return text;
+  return text.split("")
+    .map((char) => validate(char))
+    .map(revertStringCases)
+    .map(getDiff)
+    .map(toEncrypted)
+    .join("");
 }
 
+function decrypt(encryptedText) { // export
+  if (!encryptedText || encryptedText.length === 0) return encryptedText;
+  encryptedText.split("").forEach((char) => validate(char));
 
-function decrypt(encryptedText) {
-  verifyText(text, buildRegion());
+  const decrypted = [region.length - getCharCode(encryptedText[0]) - 1];
+  for (let i = 1; i < encryptedText.length; i++) {
+    decrypted[i] = (decrypted[i - 1] - getCharCode(encryptedText[i])) % region.length;
+  }
+
+  return decrypted
+    .map(toEncrypted)
+    .map(revertStringCases)
+    .join("");
 }
 
-// module.exports = { encrypt, decrypt };
-
-// console.log(encrypt("hello world /"));
-console.log(encrypt("hello world"));
-console.log(encrypt("hello world"));
+module.exports = { encrypt, decrypt };
