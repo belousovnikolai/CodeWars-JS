@@ -9,7 +9,7 @@ function to24hourtime(hour, minute, period) {
     }
   } else if (period === "pm") {
     if (hour !== 12) converted += 12 + hour;
-    else converted += hour + minute;
+    else converted += hour;
   }
 
   if (minute < 10) {
