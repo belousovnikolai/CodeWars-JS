@@ -8,5 +8,3 @@ function sumEvenNumbers(input) {
     }
     return sum;
 }
-
-module.exports = sumEvenNumbers;

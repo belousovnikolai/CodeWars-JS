@@ -20,5 +20,3 @@ function to24hourtime(hour, minute, period) {
 
   return converted;
 }
-
-module.exports = to24hourtime;

@@ -19,5 +19,3 @@ function peak(arr) {
   }
   return -1;
 }
-
-module.exports = peak;

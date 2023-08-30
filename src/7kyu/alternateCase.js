@@ -12,5 +12,3 @@ function alternateCase(s) {
     }
     return reversed;
 }
-
-module.exports = alternateCase;

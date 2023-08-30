@@ -6,5 +6,3 @@ function getMiddle(s) {
     }
     return s.substring(len / 2 - 1, len / 2 + 1);
 }
-
-module.exports = getMiddle;

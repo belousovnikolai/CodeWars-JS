@@ -15,5 +15,3 @@ function calculate(num1, operation, num2) {
 
     return null;
 }
-
-module.exports = calculate;

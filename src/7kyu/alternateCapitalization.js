@@ -14,5 +14,3 @@ function capitalize(s) {
     }
     return [l, r];
 }
-
-module.exports = capitalize;

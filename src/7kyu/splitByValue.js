@@ -12,5 +12,3 @@ function splitByValue(k, elements) {
   }
   return lower.concat(bigger);
 }
-
-module.exports = splitByValue;

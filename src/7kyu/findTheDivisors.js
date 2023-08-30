@@ -12,5 +12,3 @@ function divisors(integer) {
     }
     return result;
 }
-
-module.exports = divisors;
