@@ -1,4 +1,4 @@
 # CodeWars-JS
 Kata from 'codewars.com' implemented with JavaScript
 
-![Codewars](https://www.google.com/search?client=safari&rls=en&q=md+file+url&ie=UTF-8&oe=UTF-8)
+![Codewars](https://github.r2v.ch/codewars?user=deadfish&name=true&top_languages=true&hide_clan=true&theme=dark)
