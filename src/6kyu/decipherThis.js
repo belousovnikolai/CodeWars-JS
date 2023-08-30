@@ -26,5 +26,3 @@ function decrypt(str) {
 function decipherThis(str) {
   return str.split(" ").map((word) => decrypt(word)).join(" ");
 }
-
-module.exports = decipherThis;

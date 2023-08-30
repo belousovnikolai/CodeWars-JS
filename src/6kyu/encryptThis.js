@@ -23,5 +23,3 @@ const encryptThis = (text) => {
   }
   return encrypted.join(" ");
 };
-
-module.exports = encryptThis;

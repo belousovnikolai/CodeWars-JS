@@ -11,5 +11,3 @@ function reverse(arr) {
     }
     return arr;
 }
-
-module.exports = reverse;

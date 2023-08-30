@@ -6,5 +6,3 @@ const findInArray = (array, iterator) => {
   }
   return -1;
 };
-
-module.exports = findInArray;

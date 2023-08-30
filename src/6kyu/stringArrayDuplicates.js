@@ -14,5 +14,3 @@ function removeDuplicates(word) {
 function dup(s) {
   return s.map((str) => removeDuplicates(str));
 }
-
-module.exports = dup;

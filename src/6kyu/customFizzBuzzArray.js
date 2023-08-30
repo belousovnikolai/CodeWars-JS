@@ -13,5 +13,3 @@ const fizzBuzzCustom = (stringOne = "Fizz", stringTwo = "Buzz", numOne = 3, numT
   }
   return sequence;
 };
-
-module.exports = fizzBuzzCustom;

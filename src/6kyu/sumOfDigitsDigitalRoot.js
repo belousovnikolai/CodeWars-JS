@@ -11,5 +11,3 @@ function digitalRoot(n) {
     }
     return digitalRoot(sum);
 }
-
-module.exports = digitalRoot;

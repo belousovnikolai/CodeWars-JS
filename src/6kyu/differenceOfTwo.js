@@ -11,5 +11,3 @@ function twosDifference(input) {
     }
     return result;
 }
-
-module.exports = twosDifference;

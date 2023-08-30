@@ -6,5 +6,3 @@ function findNumber(array) {
     }
     return result + array.length + 1;
 }
-
-module.exports = findNumber;
