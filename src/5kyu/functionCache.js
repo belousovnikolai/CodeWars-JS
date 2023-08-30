@@ -9,5 +9,3 @@ function cache(func) {
     return c[key];
   };
 }
-
-module.exports = cache;
