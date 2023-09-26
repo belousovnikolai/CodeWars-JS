@@ -1,5 +1,10 @@
 node_modules/
 test/
+.vscode/
 jest.config.js
 .eslintrc.json
 settings.json
+.gitignore
+.gitignore
+src/.DS_Store
+.DS_Store
